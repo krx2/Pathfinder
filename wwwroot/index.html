@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathfinder - Twój Plan Zwiedzania</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Pathfinder</h1>
+            <p>Zaplanuj idealny dzień pełen wrażeń.</p>
+        </header>
+
+        <main class="glass-panel">
+            <form id="preferences-form">
+                <div class="form-group">
+                    <label for="walkingDistance">Ile chcesz dzisiaj przejść/przejechać? (w kilometrach)</label>
+                    <div class="range-container">
+                        <input type="range" id="walkingDistance" min="1" max="20" step="1" value="5">
+                        <span id="distanceValue" class="value-display">5 km</span>
+                    </div>
+                </div>
+
+                <div class="form-group row-group">
+                    <div class="col">
+                        <label for="transportMode">Sposób przemieszczania się</label>
+                        <select id="transportMode">
+                            <option value="Walking">Pieszo</option>
+                            <option value="PublicTransport">Komunikacja Miejska</option>
+                            <option value="Car">Samochód</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="weather">Pogoda</label>
+                        <select id="weather">
+                            <option value="Sunny">Słonecznie</option>
+                            <option value="Cloudy">Pochmurno</option>
+                            <option value="Raining">Deszczowo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="focusType">Czego dzisiaj potrzebujesz?</label>
+                    <div class="slider-labels">
+                        <span>Tylko relaks ☕</span>
+                        <span>Aktywne zwiedzanie 🏛️</span>
+                    </div>
+                    <input type="range" id="focusType" min="1" max="10" step="1" value="5">
+                </div>
+
+                <button type="submit" id="generate-btn" class="primary-btn">Generuj Plan 🚀</button>
+            </form>
+
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Przygotowujemy najlepszą trasę...</p>
+            </div>
+
+            <div id="results" class="hidden">
+                <h2>Twój Plan Zwiedzania</h2>
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <span class="stat-label">Dystans</span>
+                        <span class="stat-value" id="res-distance">0 km</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Szacowany Czas</span>
+                        <span class="stat-value" id="res-time">0 min</span>
+                    </div>
+                </div>
+                
+                <ul id="attractions-list" class="timeline">
+                    <!-- Attractions will be injected here -->
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
