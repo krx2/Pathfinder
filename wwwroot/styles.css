@@ -214,8 +214,119 @@ select option {
     transform: translateY(0);
 }
 
+.secondary-btn {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
 .hidden {
     display: none !important;
+}
+
+/* Modal / Explainer */
+.explainer-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text-main);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.explainer-toggle:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.explainer-section {
+    background: rgba(0,0,0,0.2);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--secondary);
+}
+
+.explainer-section h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.explainer-section p, .explainer-section ul {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.explainer-section ul {
+    padding-left: 20px;
+}
+
+.code-block {
+    background: #0f172a;
+    padding: 0.8rem;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #a855f7;
+    margin: 0.5rem 0;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+@media (max-width: 600px) {
+    .explainer-toggle {
+        position: static;
+        transform: none;
+        margin-top: 1rem;
+        display: inline-block;
+    }
 }
 
 /* Loading */

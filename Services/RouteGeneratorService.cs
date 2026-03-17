@@ -108,6 +108,23 @@ public class RouteGeneratorService
 
         plan.TotalDistanceKm = Math.Round(plan.TotalDistanceKm, 2);
 
+        // Populate Debug Panel Data
+        plan.DebugData = new
+        {
+            Preferences = preferences,
+            AllScoredAttractions = scoredAttractions.Select(sa => new
+            {
+                sa.Attraction.Id,
+                sa.Attraction.Name,
+                OriginalExploration = sa.Attraction.ExplorationScore,
+                OriginalRelaxation = sa.Attraction.RelaxationScore,
+                CalculatedScore = sa.Score,
+                sa.Attraction.IsOutdoor
+            }),
+            CalculatedExploreWeight = exploreWeight,
+            CalculatedRelaxWeight = relaxWeight
+        };
+
         return plan;
     }
 

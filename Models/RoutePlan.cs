@@ -11,4 +11,7 @@ public class RoutePlan
     
     // Total estimated time in minutes (travel + duration at attractions)
     public int TotalEstimatedTimeMinutes { get; set; }
+
+    // Debug Data for developers
+    public object? DebugData { get; set; }
 }

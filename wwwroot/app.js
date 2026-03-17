@@ -8,6 +8,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingScreen = document.getElementById('loading');
     const resultsScreen = document.getElementById('results');
     const attractionsList = document.getElementById('attractions-list');
+    const debugPanel = document.getElementById('debug-panel');
+    const debugDataView = document.getElementById('debug-data-view');
+    const toggleDebugBtn = document.getElementById('toggle-debug-btn');
+    
+    // Modal Elements
+    const explainerBtn = document.getElementById('show-explainer-btn');
+    const explainerModal = document.getElementById('explainer-modal');
+    const closeExplainerBtn = document.getElementById('close-explainer-btn');
+
+    // Explainer modal logic
+    explainerBtn.addEventListener('click', () => {
+        explainerModal.classList.remove('hidden');
+    });
+    
+    closeExplainerBtn.addEventListener('click', () => {
+        explainerModal.classList.add('hidden');
+    });
+
+    // Close modal when clicking outside
+    explainerModal.addEventListener('click', (e) => {
+        if (e.target === explainerModal) {
+            explainerModal.classList.add('hidden');
+        }
+    });
+
+    // Debug panel toggle logic
+    toggleDebugBtn.addEventListener('click', () => {
+        debugPanel.classList.toggle('hidden');
+    });
     
     // Update distance value display
     walkingDistanceInput.addEventListener('input', (e) => {
@@ -97,6 +126,42 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             attractionsList.appendChild(li);
         });
+
+        // Populate debug data if exists
+        if (data.debugData) {
+            let tableHTML = `
+                <div style="margin-bottom: 1rem;">
+                    <strong>Współczynnik Eksploracji (ExploreWeight):</strong> ${data.debugData.calculatedExploreWeight.toFixed(2)}<br>
+                    <strong>Współczynnik Relaksu (RelaxWeight):</strong> ${data.debugData.calculatedRelaxWeight.toFixed(2)}
+                </div>
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
+                            <th style="padding: 0.5rem;">Atrakcja</th>
+                            <th style="padding: 0.5rem;">Oryg. Eksploracja</th>
+                            <th style="padding: 0.5rem;">Oryg. Relaks</th>
+                            <th style="padding: 0.5rem; color: var(--secondary);">Wynik Końcowy (Score)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            data.debugData.allScoredAttractions.forEach(item => {
+                tableHTML += `
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 0.5rem;">${item.name} ${item.isOutdoor ? '🌳' : '🏛️'}</td>
+                        <td style="padding: 0.5rem;">${item.originalExploration}/10</td>
+                        <td style="padding: 0.5rem;">${item.originalRelaxation}/10</td>
+                        <td style="padding: 0.5rem; font-weight: bold; color: var(--secondary);">${item.calculatedScore.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+            
+            tableHTML += `</tbody></table>`;
+            debugDataView.innerHTML = tableHTML;
+        } else {
+            debugDataView.innerHTML = "<p>Brak danych debuggera.</p>";
+        }
 
         // Add a "Start Over" button at the bottom
         const startOverBtn = document.createElement('button');
