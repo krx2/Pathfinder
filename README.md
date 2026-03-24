@@ -62,9 +62,7 @@ dotnet run
 
 ---
 
-## 5. Dziennik Zmian Architektonicznych i Inżynieryjnych (Notatki do Obrony)
-
-Poniższe zestawienie stanowi podsumowanie najnowszej refaktoryzacji, w której prosta aplikacja anemiczna ewoluowała do rangi wysoce inżynieryjnego projektu, napisanego czystym kodem gotowym do rynkowej produkcji (Production-Ready). 
+## 5. Dziennik Zmian Architektonicznych i Inżynieryjnych
 
 ### Wzorce Projektowe i Domain-Driven Design
 1. **Podejście Modular Monolith**: Zrezygnowano ze standardowego rozrzucenia klas do płaskich folderów `Models/Services`. Zamiast tego zaimplementowano logiczny podział na separowane obszary decyzyjne (`Attractions`, `Routing`, `Gamification`).
@@ -76,8 +74,8 @@ Poniższe zestawienie stanowi podsumowanie najnowszej refaktoryzacji, w której 
 1. **Walidacja Danych na wejściu (FluentValidation)**: 
    Wyeliminowano podstawowe adnotacje modelowe, wdrażając dedykowaną blibliotekę `FluentValidation` konfigurującą reguły ochrony wejść do warstwy aplikacji np. odcinając dystans mniejszy niż 0 na wczesnym etapie żądania HTTP.
 2. **Filtry Potokowe (Endpoint Filters)**: 
-   Zaprogramowano re-używalną, generyczną pre-warstwę HTTP - `ValidationFilter<T>`. Pokazuje to akademickie opanowanie Pipeline'ów ASP.NET, jako że złe żądania ucinane są, zanim faktycznie sięgną wywołanego endpointu w pamięci kontrolerów.
+   Zaprogramowano re-używalną, generyczną pre-warstwę HTTP - `ValidationFilter<T>`.
 3. **Globalna Obsługa Wyjątków z ProblemDetails**: 
    Serwer wpiął scentralizowany globalny przechwytywacz błędów oparty pod nowy Interfejs `IExceptionHandler` (.NET 8/9). Formatuje on m.in naruszenia logiki jak `CapacityExceededException` i serwuje idealnie sformatowany standard **ProblemDetails (RFC 7807)** (Standaryzowany zwrot informujący klienta o polu `status`, `title` i `detail` by usunąć nieeleganckie rzucanie Stack Trace'm z logów). W tle wstrzyknięty loguje awarie obiektem `ILogger`.
 4. **Asynchroniczna Ochrona Pamięci**: 
-   Minimal API wyposażono w delegat `CancellationToken`, dokumentując dbałość inżyniera o środowiska asynchroniczne - zapobiegając bezpowrotnemu pożerowaniu (Memory Leaks) przestrzeni RAM serwera w wypadku fizycznego przerwania żądania wygenerowania mapy przez urządzenie Klienta mobilnego.
+   Minimal API wyposażono w delegat `CancellationToken` zapobiegając bezpowrotnemu pożerowaniu (Memory Leaks) przestrzeni RAM serwera w wypadku fizycznego przerwania żądania wygenerowania mapy przez urządzenie Klienta mobilnego.
