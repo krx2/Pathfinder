@@ -21,7 +21,7 @@ public static class ModuleExtensions
         // Gamification Module
         services.AddTransient<ActivityScoreCalculator>();
 
-        // Academic Enhancements: Validation & Error Handling
+        //Validation & Error Handling
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddProblemDetails();
         services.AddValidatorsFromAssemblyContaining<UserPreferencesValidator>();
