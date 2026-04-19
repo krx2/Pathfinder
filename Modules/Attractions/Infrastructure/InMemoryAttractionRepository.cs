@@ -36,6 +36,38 @@ public class InMemoryAttractionRepository : IAttractionRepository
             new Attraction(110, "Muzeum Sztuki Współczesnej MOCAK", "Kraków", 50.0470, 19.9602, false, 8, 4, 120, Season.YearRound, true, 100),
             new Attraction(111, "Smocza Jama", "Kraków", 50.0536, 19.9328, false, 7, 4, 45, Season.Summer, false, 20),
 
+            // --- WIELICZKA ---
+            // Kopalnia Soli Wieliczka - Trasa Turystyczna
+            // Tagi: kopalnia, sól, UNESCO, podziemia, historia, kaplica, rzeźby, wycieczka, Małopolska
+            // Opis: Trasa Turystyczna prowadzi przez spektakularne komory solne, w tym Kaplicę św. Kingi,
+            //       podziemne jeziora i unikalne rzeźby. Ok. 3,5 km, 800 schodów, zejście do 135 m p.p.m.
+            //       Zwiedzanie z przewodnikiem (PL/EN/DE/FR/IT/RU/ES/UA). Zbiórka: Szyb Daniłowicza.
+            //       Minimalny wiek: brak. Temperatura: 17-18°C. Bagaż: max 20x20x35 cm.
+            new Attraction(151, "Kopalnia Soli Wieliczka - Trasa Turystyczna", "Wieliczka",
+                49.9855, 20.0536,
+                isOutdoor: false,
+                explorationScore: 9,
+                relaxationScore: 3,
+                recommendedDurationMinutes: 150,
+                Season.YearRound,
+                isAccessibleForDisabled: true,   // częściowo - specjalne terminy, wcześniejsza rezerwacja
+                maxConcurrentReservations: 40),
+
+            // Kopalnia Soli Wieliczka - Trasa Górnicza
+            // Tagi: kopalnia, sól, górnictwo, przygoda, wyprawa, podziemia, historia, Małopolska
+            // Opis: Trasa Górnicza to wyprawa poza standardowo udostępniane rejony kopalni - z kaskiem,
+            //       lampą i pochłaniaczem CO. Ok. 2 km, zejście do wyrobisk niedostępnych na trasie turystycznej.
+            //       Zwiedzanie z przodowym (PL/EN). Zbiórka: Szyb Regis. Min. wiek: 10 lat. Temp: 14-16°C.
+            new Attraction(152, "Kopalnia Soli Wieliczka - Trasa Górnicza", "Wieliczka",
+                49.9866, 20.0501,
+                isOutdoor: false,
+                explorationScore: 10,
+                relaxationScore: 1,
+                recommendedDurationMinutes: 150,
+                Season.YearRound,
+                isAccessibleForDisabled: false,
+                maxConcurrentReservations: 20),
+
             // --- GDAŃSK ---
             new Attraction(201, "Długi Targ i Fontanna Neptuna", "Gdańsk", 54.3486, 18.6534, true, 9, 5, 90, Season.YearRound, true, 800),
             new Attraction(202, "Europejskie Centrum Solidarności", "Gdańsk", 54.3608, 18.6493, false, 10, 1, 200, Season.YearRound, true, 150),
